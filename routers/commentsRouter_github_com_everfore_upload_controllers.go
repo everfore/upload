@@ -94,7 +94,7 @@ func init() {
 		beego.ControllerComments{
 			"Upload",
 			`/upload/*`,
-			[]string{"post", "put"},
+			[]string{"post","put"},
 			nil})
 
 	beego.GlobalControllerRouter["github.com/everfore/upload/controllers:MainController"] = append(beego.GlobalControllerRouter["github.com/everfore/upload/controllers:MainController"],

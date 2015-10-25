@@ -27,6 +27,7 @@ func (c *MainController) Home() {
 
 // @router /list/ [get]
 func (c *MainController) LHome() {
+	beego.Info(c.Ctx.Request.Host)
 	c.Redirect("/list/_home", 302)
 }
 
@@ -151,7 +152,6 @@ var (
 
 // @router /list/* [get]
 func (c *MainController) ListFile() {
-	beego.Debug(c.Ctx.Request.RequestURI)
 	pathname := c.Ctx.Input.Param(":splat")
 	beego.Debug(pathname)
 	if "_home" == pathname {
