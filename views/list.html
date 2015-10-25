@@ -1,0 +1,59 @@
+{{template "header.html" .}}
+<script type="text/javascript">
+	function dlt (file) {
+		$.ajax({
+		 url: '/delfile/'+file,
+		 type: 'DELETE',
+		 success: function(result) {
+		  // Do something with the result
+		  // alert(result);
+		  window.location.href = "/list/"+result;
+		 }
+		});
+	}
+
+  function down (file) {
+    window.location.href = '/download/'+file;
+  }
+
+  function up (file) {
+      	window.location.href = '/upload/'+file;
+  }
+
+</script>
+<br>
+<br>
+ <div class="container projects">
+    <div class="row">
+      {{range .dirs}}
+            <div class="col-sm-3 col-md-2 col-lg-2">
+            <div class="thumbnail">
+              <a href="/list/{{.}}"><img src="http://7xku3c.com1.z0.glb.clouddn.com/dirs.png">{{.}}</a><br><hr>
+                <label onclick="up({{.}})">upload</label> &nbsp;&nbsp;
+                <label onclick="dlt({{.}})">delete</label>
+            </div>
+          </div>
+      {{end}}
+	</div>
+  <hr>
+    <div class="row">
+      {{range .fileviews}}
+            <div class="col-sm-3 col-md-2 col-lg-3">
+            <div class="thumbnail">
+              <a href="/display/{{.Name}}" target="_blank">
+                {{if .Img}}
+                  <img src="{{.Img}}">
+                {{else}}
+                  <img src="http://7xku3c.com1.z0.glb.clouddn.com/file.png">
+                {{end}}
+                {{.Name}}</a>
+                <hr>
+                <label onclick="down({{.Name}})">download</label>&nbsp;&nbsp;
+                <label onclick="dlt({{.Name}})">delete</label><hr>
+            </div>
+          </div>
+      {{end}}
+	</div>
+</div>
+
+{{template "footer.html" .}}
